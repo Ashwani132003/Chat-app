@@ -3,15 +3,12 @@ import streamlit as st
 import socket
 from textblob import TextBlob
 
-def client():
+def host():
     s=socket.socket()
-    host = st.text_input(str('Enter the host name: '))
     st.write('Server will srart at host: ',host)
     port = 8080
     s.connect((host,port))
     st.write('Connected to chat server \n')
-    # s.listen(1)
-    # conn,addr=s.accept()
 
     while 1:
         incoming_message = s.recv(1024)
@@ -23,4 +20,9 @@ def client():
         message = message.encode()
         s.send(message)
         st.success("Sent")
+
+def client():
+    host = st.text_input(str('Enter the host name: '))
+    if host :
+        host()
     
