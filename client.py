@@ -24,5 +24,6 @@ def host():
 def client():
     host = st.text_input(str('Enter the host name: '))
     if host :
+        st.write('Starting')
         host()
     
