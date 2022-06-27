@@ -1,4 +1,4 @@
-from email import message
+# from email import message
 import streamlit as st
 
 import socket
@@ -22,7 +22,11 @@ def server():
         incoming_message = conn.recv(1024)
         incoming_message = incoming_message.decode()
         blob = TextBlob(incoming_message)
-        incoming_message = blob.translate(to='es')
+        try:
+            incoming_message=blob.translate(from_lang = 'en', to = 'en')
+        except:
+            pass
+        # incoming_message = blob.translate(to='es')
         st.write('Friend >>', incoming_message)
         
 
